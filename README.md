@@ -4,7 +4,7 @@ COVID is an iOS app written with SwiftUI. It tracks the current worldwide status
 
 
 
-<img src="Screenshot.png"
+<img src="Screenshot.png">
 
 
 ## License
