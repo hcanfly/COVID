@@ -42,6 +42,7 @@ struct Details : Decodable, Hashable {
     var cases: Int
     var todayCases: Int
     var deaths: Int
+    var todayDeaths: Int
     var recovered: Int
     var critical: Int
     var casesPerOneMillion: Double
@@ -57,6 +58,10 @@ struct Details : Decodable, Hashable {
 
     var deathsString: String {
         getIntString(data: deaths)
+    }
+
+    var todayDeathsString: String {
+        getIntString(data: todayDeaths)
     }
 
     var recoveredString: String {
@@ -134,7 +139,11 @@ fileprivate func getDoubleString(data: Double) -> String {
     return format.string(for: data)!
 }
 
-fileprivate func getIntString(data: Int) -> String {
+fileprivate func getIntString(data: Int?) -> String {
+
+    guard let data = data else {
+        return "0"
+    }
 
     let format = NumberFormatter()
     format.numberStyle = .decimal
@@ -149,7 +158,7 @@ extension URL {
     }
 
     fileprivate static var countriesDetail: URL {
-        URL(string: "https://corona.lmao.ninja/countries/usa,singapore,taiwan,korea,china,italy,spain")!
+        URL(string: "https://corona.lmao.ninja/countries/usa,singapore,taiwan,korea,china,italy,spain,sweden")!
     }
 
     fileprivate static func detail(for country: String) -> URL {

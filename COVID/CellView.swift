@@ -66,10 +66,10 @@ struct cellView : View {
 
                     VStack(alignment: .leading, spacing: 10) {
 
-                        Text("Deaths")
+                        Text("Today's Deaths")
                         .foregroundColor(.black)
 
-                        Text(self.details.deathsString)
+                        Text(self.details.todayDeathsString)
                             .foregroundColor(.red)
                     }
 
