@@ -10,11 +10,11 @@ import Foundation
 
 
 struct Case : Decodable {
-    var cases: Int
-    var deaths: Int
-    var updated: Double
-    var recovered: Int
-    var active: Int
+    var cases: Int?
+    var deaths: Int?
+    var updated: Double?
+    var recovered: Int?
+    var active: Int?
 
     var lastUpdated: String {
         getDateString(time: updated)
@@ -39,7 +39,7 @@ struct Case : Decodable {
 
 struct Details : Decodable, Hashable {
     var country: String
-    var cases: Int
+    var cases: Int?
     var todayCases: Int
     var deaths: Int
     var todayDeaths: Int
@@ -121,7 +121,11 @@ class Model : ObservableObject {
 }
 
 
-fileprivate func getDateString(time: Double) -> String {
+fileprivate func getDateString(time: Double?) -> String {
+    guard let time = time else {
+        return ""
+    }
+
     let date = Double(time / 1000)
     let format = DateFormatter()
 
@@ -154,11 +158,11 @@ fileprivate func getIntString(data: Int?) -> String {
 
 extension URL {
     fileprivate static var summaryData: URL {
-        URL(string: "https://corona.lmao.ninja/all")!
+        URL(string: "https://corona.lmao.ninja/v2/all")!
     }
 
     fileprivate static var countriesDetail: URL {
-        URL(string: "https://corona.lmao.ninja/countries/usa,singapore,taiwan,korea,china,italy,spain,sweden")!
+        URL(string: "https://corona.lmao.ninja/v2/countries/usa,singapore,taiwan,korea,china,italy,spain,sweden")!
     }
 
     fileprivate static func detail(for country: String) -> URL {
