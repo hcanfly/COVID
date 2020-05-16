@@ -40,11 +40,11 @@ struct Case : Decodable {
 struct Details : Decodable, Hashable {
     var country: String
     var cases: Int?
-    var todayCases: Int
-    var deaths: Int
-    var todayDeaths: Int
-    var recovered: Int
-    var critical: Int
+    var todayCases: Int?
+    var deaths: Int?
+    var todayDeaths: Int?
+    var recovered: Int?
+    var critical: Int?
     var casesPerOneMillion: Double
     var deathsPerOneMillion: Double
 

@@ -77,11 +77,11 @@ struct cellView : View {
 
                     VStack(alignment: .leading, spacing: 10) {
 
-                        Text("Recovered")
+                        Text("Total Deaths")
                         .foregroundColor(.black)
 
-                        Text(self.details.recoveredString)
-                            .foregroundColor(.green)
+                        Text(self.details.deathsString)
+                            .foregroundColor(.red)
                     }
 
                 }
