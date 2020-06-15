@@ -87,6 +87,10 @@ class Model : ObservableObject {
         updateData()
     }
 
+    func refresh() {
+        updateData()
+    }
+
     func updateData() {
 
         let sessionTotals = URLSession(configuration: .default)
@@ -162,7 +166,7 @@ extension URL {
     }
 
     fileprivate static var countriesDetail: URL {
-        URL(string: "https://corona.lmao.ninja/v2/countries/usa,singapore,taiwan,korea,china,italy,spain,sweden")!
+        URL(string: "https://corona.lmao.ninja/v2/countries/usa,singapore,taiwan,korea,china,brazil,spain,sweden")!
     }
 
     fileprivate static func detail(for country: String) -> URL {

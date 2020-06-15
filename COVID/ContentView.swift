@@ -99,8 +99,8 @@ struct Home: View {
                             .background(Color.white)
                             .cornerRadius(12)
                     }.offset(y: -60)
-                    .padding(.bottom, -60)
-                    .zIndex(25)
+                        .padding(.bottom, -60)
+                        .zIndex(25)
                     
                     
                     VStack(alignment: .center, spacing: 15) {
@@ -131,15 +131,18 @@ struct Home: View {
                 }
                 .background(Color.gray)
             }
-                else {
-                    GeometryReader { _ in
-                        VStack {
-                            Indicator()
-                        }
+            else {
+                GeometryReader { _ in
+                    VStack {
+                        Indicator()
                     }
                 }
-            }.edgesIgnoringSafeArea(.top)
+            }
+        }.edgesIgnoringSafeArea(.top)
             .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                self.data.refresh()
+        }
     }
 }
 
