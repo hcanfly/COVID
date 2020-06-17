@@ -55,8 +55,6 @@ struct Home: View {
                         Spacer()
                         
                         Button(action: {
-                            self.data.data = nil
-                            self.data.countries.removeAll()
                             self.data.updateData()
                         }) {
                             Image(systemName: "arrow.clockwise")
@@ -140,8 +138,11 @@ struct Home: View {
             }
         }.edgesIgnoringSafeArea(.top)
             .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
+            .onAppear {
+                self.data.updateData()
+            }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                self.data.refresh()
+                self.data.updateData()
         }
     }
 }

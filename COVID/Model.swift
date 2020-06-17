@@ -83,19 +83,14 @@ class Model : ObservableObject {
     @Published var data: Case!
     @Published var countries = [Details]()
 
-    init() {
-        updateData()
-    }
-
-    func refresh() {
-        updateData()
-    }
 
     func updateData() {
 
         let sessionTotals = URLSession(configuration: .default)
         let sessionCountries = URLSession(configuration: .default)
 
+        // TODO: these two network calls really should be zipped so that
+        // UI is only updated once. but this works fine so putting it off due to laziness
         sessionTotals.dataTask(with: .summaryData) { (data, _, err) in
 
             if err != nil {
