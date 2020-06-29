@@ -161,7 +161,7 @@ extension URL {
     }
 
     fileprivate static var countriesDetail: URL {
-        URL(string: "https://corona.lmao.ninja/v2/countries/usa,singapore,taiwan,korea,china,brazil,spain,sweden")!
+        URL(string: "https://corona.lmao.ninja/v2/countries/usa,singapore,taiwan,kr,china,brazil,spain,sweden")!
     }
 
     fileprivate static func detail(for country: String) -> URL {
