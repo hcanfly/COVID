@@ -86,8 +86,11 @@ class Model : ObservableObject {
 
     func updateData() {
 
-        let sessionTotals = URLSession(configuration: .default)
-        let sessionCountries = URLSession(configuration: .default)
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.urlCache = nil
+        let sessionTotals = URLSession(configuration: config)
+        let sessionCountries = URLSession(configuration: config)
 
         // TODO: these two network calls really should be zipped so that
         // UI is only updated once. but this works fine so putting it off due to laziness
@@ -126,12 +129,15 @@ fileprivate func getDateString(time: Double?) -> String {
     }
 
     let date = Double(time / 1000)
-    let format = DateFormatter()
+    let formatter = DateFormatter()
 
-    format.dateStyle = .medium
-    format.timeStyle = .medium
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .medium
+    let timeUTC = Date(timeIntervalSince1970: TimeInterval(exactly: date)!)
+    formatter.timeZone = TimeZone.current
+    let dateString = formatter.string(from: timeUTC)
 
-    return format.string(from: Date(timeIntervalSince1970: TimeInterval(exactly: date)!))
+    return dateString
 }
 
 fileprivate func getDoubleString(data: Double) -> String {
@@ -157,11 +163,12 @@ fileprivate func getIntString(data: Int?) -> String {
 
 extension URL {
     fileprivate static var summaryData: URL {
-        URL(string: "https://corona.lmao.ninja/v2/all")!
+        URL(string: "https://disease.sh/v2/all")!
+//        URL(string: "https://corona.lmao.ninja/v2/all")!
     }
 
     fileprivate static var countriesDetail: URL {
-        URL(string: "https://corona.lmao.ninja/v2/countries/usa,singapore,taiwan,kr,china,brazil,spain,sweden")!
+        URL(string: "https://corona.lmao.ninja/v2/countries/usa,kr,singapore,taiwan,china,brazil,spain,sweden")!
     }
 
     fileprivate static func detail(for country: String) -> URL {
