@@ -11,14 +11,25 @@ import SwiftUI
 
 struct cellView : View {
     var details: Details
+    @State private var show: Bool = false
 
     var body : some View {
 
         VStack(alignment: .leading, spacing: 15) {
 
-            Text(details.country)
-                .foregroundColor(.black)
-                .font(.title)
+            HStack {
+                Text(details.country)
+                    .foregroundColor(.black)
+                    .font(.title)
+                Spacer()
+                Button("History") {
+                    self.show = true
+                }
+                .padding(10).border(show ? Color.red : Color.clear)
+                .sheet(isPresented: $show,
+                       onDismiss: { },
+                       content: { HistoryView(countryCode: details.countryCode) })
+            }
 
             HStack(spacing: 15) {
 

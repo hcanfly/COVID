@@ -48,6 +48,14 @@ struct Details : Decodable, Hashable {
     var casesPerOneMillion: Double
     var deathsPerOneMillion: Double
 
+    var countryCode: String {
+        if let key = countryCodes.first(where: { $0.value == self.country })?.key {
+            return String(key)
+        }
+
+        return ""
+    }
+
     var todaysCasesString: String {
         getIntString(data: todayCases)
     }
@@ -79,7 +87,7 @@ struct Details : Decodable, Hashable {
 }
 
 
-class Model : ObservableObject {
+class ViewModel : ObservableObject {
     @Published var data: Case!
     @Published var countries = [Details]()
 
@@ -160,6 +168,10 @@ fileprivate func getIntString(data: Int?) -> String {
     return format.string(for: data)!
 }
 
+fileprivate let countryCodes = [ "usa": "USA", "kr": "S. Korea", "singapore": "Singapore", "taiwan": "Taiwan", "china": "China", "brazil": "Brazil", "spain": "Spain", "sweden": "Sweden"]
+
+fileprivate let codes = countryCodes.keys
+fileprivate let countryCodeList = codes.joined(separator: ",")
 
 extension URL {
     fileprivate static var summaryData: URL {
@@ -168,10 +180,14 @@ extension URL {
     }
 
     fileprivate static var countriesDetail: URL {
-        URL(string: "https://corona.lmao.ninja/v2/countries/usa,kr,singapore,taiwan,china,brazil,spain,sweden")!
+        URL(string: "https://corona.lmao.ninja/v2/countries/\(countryCodeList)")!
     }
 
     fileprivate static func detail(for country: String) -> URL {
         URL(string: "https://corona.lmao.ninja/countries/\(country)")!
+    }
+
+    static func history(for country: String, daysBack: Int) -> URL {
+        URL(string: "https://disease.sh/v3/covid-19/historical/\(country)?lastdays=\(daysBack)")!
     }
 }

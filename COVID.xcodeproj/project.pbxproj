@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E956071243A4ACC00EF60D9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956070243A4ACC00EF60D9 /* Model.swift */; };
+		3E6513D824C5F82400AC7893 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6513D724C5F82400AC7893 /* ChartView.swift */; };
+		3E6513DA24C5FD7800AC7893 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6513D924C5FD7800AC7893 /* HistoryViewModel.swift */; };
+		3E956071243A4ACC00EF60D9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956070243A4ACC00EF60D9 /* ViewModel.swift */; };
 		3E956075243A525200EF60D9 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956074243A525200EF60D9 /* CellView.swift */; };
+		3EE7F6C824C51B4600FBFB0A /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7F6C724C51B4600FBFB0A /* HistoryView.swift */; };
 		4E59AA9D24300A910055432C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59AA9C24300A910055432C /* AppDelegate.swift */; };
 		4E59AA9F24300A910055432C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59AA9E24300A910055432C /* SceneDelegate.swift */; };
 		4E59AAA124300A910055432C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E59AAA024300A910055432C /* ContentView.swift */; };
@@ -18,8 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E956070243A4ACC00EF60D9 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3E6513D724C5F82400AC7893 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		3E6513D924C5FD7800AC7893 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		3E956070243A4ACC00EF60D9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		3E956074243A525200EF60D9 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		3EE7F6C724C51B4600FBFB0A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		4E59AA9924300A910055432C /* COVID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COVID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E59AA9C24300A910055432C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E59AA9E24300A910055432C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +70,10 @@
 				4E59AA9E24300A910055432C /* SceneDelegate.swift */,
 				4E59AAA024300A910055432C /* ContentView.swift */,
 				3E956074243A525200EF60D9 /* CellView.swift */,
-				3E956070243A4ACC00EF60D9 /* Model.swift */,
+				3EE7F6C724C51B4600FBFB0A /* HistoryView.swift */,
+				3E6513D724C5F82400AC7893 /* ChartView.swift */,
+				3E956070243A4ACC00EF60D9 /* ViewModel.swift */,
+				3E6513D924C5FD7800AC7893 /* HistoryViewModel.swift */,
 				4E59AAA224300A940055432C /* Assets.xcassets */,
 				4E59AAA724300A940055432C /* LaunchScreen.storyboard */,
 				4E59AAAA24300A940055432C /* Info.plist */,
@@ -153,10 +162,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E59AA9D24300A910055432C /* AppDelegate.swift in Sources */,
+				3EE7F6C824C51B4600FBFB0A /* HistoryView.swift in Sources */,
 				3E956075243A525200EF60D9 /* CellView.swift in Sources */,
+				3E6513D824C5F82400AC7893 /* ChartView.swift in Sources */,
 				4E59AA9F24300A910055432C /* SceneDelegate.swift in Sources */,
 				4E59AAA124300A910055432C /* ContentView.swift in Sources */,
-				3E956071243A4ACC00EF60D9 /* Model.swift in Sources */,
+				3E956071243A4ACC00EF60D9 /* ViewModel.swift in Sources */,
+				3E6513DA24C5FD7800AC7893 /* HistoryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

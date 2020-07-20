@@ -25,7 +25,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct Home: View {
-    @ObservedObject var data = Model()
+    @ObservedObject var data = ViewModel()
     
     var body : some View {
         VStack {
