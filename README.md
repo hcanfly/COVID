@@ -5,8 +5,7 @@ COVID is an iOS app written with SwiftUI. It tracks the current worldwide status
 Added a history Sheet that shows graphs of the country's total cases and deaths since the virus started spreading worldwide.
 
 
-<img src="Screenshot.png" style="margin-right: 60px;">
-<img src="Screenshot2.png">
+<img src="Screenshot.png" style="margin-right: 60px;"><img src="Screenshot2.png">
 
 
 ## License
