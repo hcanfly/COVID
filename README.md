@@ -7,8 +7,6 @@ Added a history Sheet that shows graphs of the country's total cases and deaths 
 
 <img src="Screenshot.png" style="margin-right: 60px;"><img align="right" src="Screenshot2.png">
 
-                               <img src="Screenshot2.png">
-
 
 ## License
 
