@@ -63,11 +63,11 @@ struct Home: View {
                                 .foregroundColor(.white)
                         }
                     }
-                    .padding(.top, (UIApplication.shared.windows.first?.safeAreaInsets.top)! + 90)
+                    .padding(.top, (UIApplication.shared.windows.first?.safeAreaInsets.top)! + 20)
                     .padding()
                     .padding(.bottom, 50)
                     .background(Color.red)
-                    
+
                     HStack(spacing: 15) {
                         
                         VStack(alignment: .leading, spacing: 15) {
@@ -98,7 +98,7 @@ struct Home: View {
                             .background(Color.white)
                             .cornerRadius(12)
                     }.offset(y: -60)
-                        .padding(.bottom, -60)
+                        .padding(.bottom, -55)
                         .zIndex(25)
                     
                     
@@ -116,7 +116,7 @@ struct Home: View {
                         .background(Color.white)
                         .cornerRadius(12)
 
-                    // Country views
+                    // Country cell views
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 15) {
                             ForEach(self.data.countries, id: \.self) { i in
@@ -124,7 +124,8 @@ struct Home: View {
                             }
                         }
                     }
-                    .padding(.bottom, 60)
+                    .padding(.top, 10)
+                    .padding(.bottom, 50)
                 }
                 .background(Color.gray)
             }
@@ -136,7 +137,6 @@ struct Home: View {
                 }
             }
         }.ignoresSafeArea()
-        .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
         .onAppear {
             self.data.updateData()
         }

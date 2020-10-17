@@ -11,7 +11,7 @@ import SwiftUI
 
 struct cellView : View {
     var details: Details
-    @State private var show: Bool = false
+    @State private var showHistory: Bool = false
 
     var body : some View {
 
@@ -37,10 +37,10 @@ struct cellView : View {
 
                 Spacer()
                 Button("History") {
-                    self.show = true
+                    self.showHistory = true
                 }
-                .padding(10).border(show ? Color.red : Color.clear)
-                .sheet(isPresented: $show,
+                .padding(10).border(showHistory ? Color.red : Color.clear)
+                .sheet(isPresented: $showHistory,
                        onDismiss: { },
                        content: { HistoryView(countryCode: details.countryCode) })
             }
