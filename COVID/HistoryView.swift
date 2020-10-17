@@ -16,7 +16,7 @@ struct HistoryView: View {
     var body: some View {
         ZStack {
             Color.black
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)          //TODO: deprecated in Xcode 12. update to ignoresSafeArea() when target changes to iOS 14.
             VStack {
                 Text("Total Cases").font(.headline)
                 VStack {

@@ -37,8 +37,15 @@ struct Case : Decodable {
     }
 }
 
+struct CountryInfo : Decodable, Hashable {
+    var iso2: String
+    var iso3: String
+    var flag: String
+}
+
 struct Details : Decodable, Hashable {
     var country: String
+    var countryInfo: CountryInfo
     var cases: Int?
     var todayCases: Int?
     var deaths: Int?
@@ -168,7 +175,7 @@ fileprivate func getIntString(data: Int?) -> String {
     return format.string(for: data)!
 }
 
-fileprivate let countryCodes = [ "usa": "USA", "kr": "S. Korea", "singapore": "Singapore", "taiwan": "Taiwan", "china": "China", "brazil": "Brazil", "spain": "Spain", "sweden": "Sweden"]
+fileprivate let countryCodes = [ "usa": "USA", "kr": "S. Korea", "singapore": "Singapore", "taiwan": "Taiwan", "china": "China", "brazil": "Brazil", "spain": "Spain", "mx": "Mexico"]
 
 fileprivate let codes = countryCodes.keys
 fileprivate let countryCodeList = codes.joined(separator: ",")

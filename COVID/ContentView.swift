@@ -26,6 +26,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct Home: View {
     @ObservedObject var data = ViewModel()
+    @Environment(\.scenePhase) var scenePhase
     
     var body : some View {
         VStack {
@@ -35,7 +36,7 @@ struct Home: View {
                     
                     HStack(alignment: .top) {
                         
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: 5) {
                             
                             Text("Updated: " + self.data.data.lastUpdated)
                                 .fontWeight(.semibold)
@@ -114,18 +115,16 @@ struct Home: View {
                         .padding(.vertical, 20)
                         .background(Color.white)
                         .cornerRadius(12)
-                        .padding(.top, 15)
-                    
+
+                    // Country views
                     ScrollView(.horizontal, showsIndicators: false) {
-                        
                         HStack(spacing: 15) {
-                            
                             ForEach(self.data.countries, id: \.self) { i in
                                 cellView(details: i)
                             }
                         }
                     }
-                    .padding(.bottom, 100)
+                    .padding(.bottom, 60)
                 }
                 .background(Color.gray)
             }
@@ -136,13 +135,15 @@ struct Home: View {
                     }
                 }
             }
-        }.edgesIgnoringSafeArea(.top)
-            .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
-            .onAppear {
+        }.ignoresSafeArea()
+        .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
+        .onAppear {
+            self.data.updateData()
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase == .active {
                 self.data.updateData()
             }
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-                self.data.updateData()
         }
     }
 }
