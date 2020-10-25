@@ -53,7 +53,7 @@ struct cellView : View {
 
                         VStack(alignment: .leading, spacing: 12) {
 
-                            Text("Active Cases")
+                            Text("Total Cases")
                                 .foregroundColor(.black)
                                 .font(.title2)
 

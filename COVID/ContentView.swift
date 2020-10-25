@@ -5,28 +5,16 @@
 //  Created by Gary Hanson on 3/28/20.
 //  Copyright © 2020 Gary Hanson. All rights reserved.
 
-//  https://www.youtube.com/watch?v=UEjiDemnkoI     // Kavsoft video
 //
 //  https://corona.lmao.ninja/docs/                 // API documentation
 //
 
 import SwiftUI
 
+
 struct ContentView: View {
-    var body: some View {
-        Home()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
-struct Home: View {
     @ObservedObject var data = ViewModel()
-    @Environment(\.scenePhase) var scenePhase
+//    @Environment(\.scenePhase) private var scenePhase
     
     var body : some View {
         VStack {
@@ -40,21 +28,20 @@ struct Home: View {
                             
                             Text("Updated: " + self.data.data.lastUpdated)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                            
+                                .padding(.bottom, 10)
+
                             Text("COVID - 19")
                                 .fontWeight(.semibold)
                                 .font(.title)
-                                .foregroundColor(.white)
-                            
+
                             Text("Total Cases: " + self.data.data.casesString)
                                 .fontWeight(.semibold)
                                 .font(.title)
-                                .foregroundColor(.white)
                         }
-                        
+                        .foregroundColor(.white)
+
                         Spacer()
-                        
+
                         Button(action: {
                             self.data.updateData()
                         }) {
@@ -62,9 +49,11 @@ struct Home: View {
                                 .font(.title)
                                 .foregroundColor(.white)
                         }
+                        .padding(.trailing, 10)
                     }
                     .padding(.top, (UIApplication.shared.windows.first?.safeAreaInsets.top)! + 20)
-                    .padding()
+                    .padding(.leading, 15)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.bottom, 50)
                     .background(Color.red)
 
@@ -97,7 +86,7 @@ struct Home: View {
                             .padding(.vertical, 20)
                             .background(Color.white)
                             .cornerRadius(12)
-                    }.offset(y: -60)
+                    }.offset(y: -50)
                         .padding(.bottom, -55)
                         .zIndex(25)
                     
@@ -125,7 +114,7 @@ struct Home: View {
                         }
                     }
                     .padding(.top, 10)
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 30)
                 }
                 .background(Color.gray)
             }
@@ -136,15 +125,20 @@ struct Home: View {
                     }
                 }
             }
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
         .onAppear {
             self.data.updateData()
         }
-        .onChange(of: scenePhase) { phase in
-            if phase == .active {
-                self.data.updateData()
-            }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            self.data.updateData()
         }
+        // this is not currently working. it used to work. will work again sometime.
+//        .onChange(of: scenePhase) { phase in
+//           if phase == .active {
+//                self.data.updateData()
+//            }
+//        }
     }
 }
 
@@ -161,5 +155,11 @@ struct Indicator: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<Indicator>) {
         
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

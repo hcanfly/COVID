@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os.log
 
 
 struct Case : Decodable {
@@ -198,3 +199,11 @@ extension URL {
         URL(string: "https://disease.sh/v3/covid-19/historical/\(country)?lastdays=\(daysBack)")!
     }
 }
+
+extension OSLog {
+    private static var subsystem = Bundle.main.bundleIdentifier!
+
+    /// Logs the view cycles like viewDidLoad.
+    static let networkLogger = OSLog(subsystem: subsystem, category: "log_networkcall")
+}
+
