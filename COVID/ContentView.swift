@@ -15,6 +15,10 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var data = ViewModel()
 //    @Environment(\.scenePhase) private var scenePhase
+
+    init() {
+        self.data.updateData()
+    }
     
     var body : some View {
         VStack {
@@ -54,18 +58,17 @@ struct ContentView: View {
                     .padding(.top, (UIApplication.shared.windows.first?.safeAreaInsets.top)! + 20)
                     .padding(.leading, 15)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 30)
                     .background(Color.red)
 
                     HStack(spacing: 15) {
                         
-                        VStack(alignment: .leading, spacing: 15) {
+                        VStack(alignment: .leading, spacing: 5) {
                             Text("Deaths")
                                 .foregroundColor(Color.black.opacity(0.5))
                             
                             Text(self.data.data.deathsString)
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .cellStyle()
                                 .foregroundColor(.red)
                             
                         }.padding(.horizontal)
@@ -73,34 +76,33 @@ struct ContentView: View {
                             .background(Color.white)
                             .cornerRadius(12)
                         
-                        VStack(alignment: .leading, spacing: 15) {
+                        VStack(alignment: .leading, spacing: 5) {
                             Text("Recovered")
                                 .foregroundColor(Color.black.opacity(0.5))
                             
                             Text(self.data.data.recoveredString)
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .cellStyle()
                                 .foregroundColor(.green)
-                            
                         }.padding(.horizontal, 20)
                             .padding(.vertical, 20)
                             .background(Color.white)
                             .cornerRadius(12)
-                    }.offset(y: -50)
-                        .padding(.bottom, -55)
+                    }.offset(y: -65)
+                        .padding(.bottom, -65)
                         .zIndex(25)
                     
                     
-                    VStack(alignment: .center, spacing: 15) {
+                    VStack(alignment: .center, spacing: 5) {
                         Text("Active Cases")
                             .foregroundColor(Color.black.opacity(0.5))
                         
                         Text(self.data.data.activesString)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .cellStyle()
                             .foregroundColor(.yellow)
                         
-                    }.padding(.horizontal, 20)
+                    }
+                    .padding(.top, 10)
+                    .padding(.horizontal, 20)
                         .padding(.vertical, 20)
                         .background(Color.white)
                         .cornerRadius(12)
@@ -114,7 +116,7 @@ struct ContentView: View {
                         }
                     }
                     .padding(.top, 10)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 20)
                 }
                 .background(Color.gray)
             }
@@ -127,9 +129,6 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea()
-        .onAppear {
-            self.data.updateData()
-        }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             self.data.updateData()
         }
@@ -142,6 +141,13 @@ struct ContentView: View {
     }
 }
 
+extension Text {
+    func cellStyle() -> some View {
+        self
+            .font(.title)
+            .fontWeight(.bold)
+    }
+}
 
 struct Indicator: UIViewRepresentable {
     

@@ -55,14 +55,7 @@ struct Details : Decodable, Hashable {
     var critical: Int?
     var casesPerOneMillion: Double
     var deathsPerOneMillion: Double
-
-    var countryCode: String {
-        if let key = countryCodes.first(where: { $0.value == self.country })?.key {
-            return String(key)
-        }
-
-        return ""
-    }
+    
 
     var todaysCasesString: String {
         getIntString(data: todayCases)
@@ -140,11 +133,11 @@ class ViewModel : ObservableObject {
 
 
 fileprivate func getDateString(time: Double?) -> String {
-    guard let time = time else {
+    guard let dateTime = time else {
         return ""
     }
 
-    let date = Double(time / 1000)
+    let date = Double(dateTime / 1000)
     let formatter = DateFormatter()
 
     formatter.dateStyle = .medium
@@ -176,15 +169,13 @@ fileprivate func getIntString(data: Int?) -> String {
     return format.string(for: data)!
 }
 
-fileprivate let countryCodes = [ "usa": "USA", "kr": "S. Korea", "singapore": "Singapore", "taiwan": "Taiwan", "china": "China", "brazil": "Brazil", "spain": "Spain", "mx": "Mexico"]
 
-fileprivate let codes = countryCodes.keys
-fileprivate let countryCodeList = codes.joined(separator: ",")
+fileprivate let countryCodes = [ "usa", "kr", "singapore", "taiwan", "china", "brazil", "spain", "mx"]
+fileprivate let countryCodeList = countryCodes.joined(separator: ",")
 
 extension URL {
     fileprivate static var summaryData: URL {
         URL(string: "https://disease.sh/v2/all")!
-//        URL(string: "https://corona.lmao.ninja/v2/all")!
     }
 
     fileprivate static var countriesDetail: URL {

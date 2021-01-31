@@ -20,20 +20,20 @@ struct cellView : View {
                 Text(details.country)
                     .foregroundColor(.black)
                     .font(.title)
-                // to avoid making a whole bunch of extra network calls to get the flags I downloaded
+                // to avoid making a whole bunch of extra network calls each time to get the flags I downloaded
                 // and saved them in the bundle. if you add more countries un-comment these lines to
                 // easily get the link for the flag. then just download and add to Assets
 //                Text(details.countryInfo.flag)
 //                    .foregroundColor(.black)
                 Image(details.countryInfo.iso2.lowercased())
                     .resizable()
-                    .frame(width: 56)
                     // flags are 250 wide and vary in height this ratio is about average
-                    .aspectRatio(1.65, contentMode: .fit)
+                    .frame(width: 56, height: 34)
+                    .aspectRatio(contentMode: .fit)
                     .border(Color.black, width: 1)
                     .background(Color.gray)
                     .padding(.leading, 10)
-                    .padding(.top, 24)
+                    .padding(.top, 5)
 
                 Spacer()
                 Button("History") {
@@ -42,7 +42,7 @@ struct cellView : View {
                 .padding(10).border(showHistory ? Color.red : Color.clear)
                 .sheet(isPresented: $showHistory,
                        onDismiss: { },
-                       content: { HistoryView(countryCode: details.countryCode) })
+                       content: { HistoryView(countryCode: details.countryInfo.iso2) })
             }
             .padding(.leading, 30)
 
@@ -119,6 +119,7 @@ struct cellView : View {
                 }
                 .padding(.leading, 40)
             }
+            .padding(.bottom, 4)
        }
         .frame(width: UIScreen.main.bounds.width - 30)
         .background(Color.white)
