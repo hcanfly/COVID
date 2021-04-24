@@ -23,8 +23,9 @@ struct cellView : View {
                 // to avoid making a whole bunch of extra network calls each time to get the flags I downloaded
                 // and saved them in the bundle. if you add more countries un-comment these lines to
                 // easily get the link for the flag. then just download and add to Assets
-//                Text(details.countryInfo.flag)
-//                    .foregroundColor(.black)
+                // url should be https://disease.sh/assets/img/flags/<iso2 countrycode>.png
+                Text(details.countryInfo.flag)
+                    .foregroundColor(.black)
                 Image(details.countryInfo.iso2.lowercased())
                     .resizable()
                     // flags are 250 wide and vary in height this ratio is about average

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Gary Hanson. All rights reserved.
 
 //
-//  https://corona.lmao.ninja/docs/                 // API documentation
+//  https://corona.lmao.ninja/docs/                 // COVID API documentation
 //
 
 import SwiftUI

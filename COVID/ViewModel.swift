@@ -169,8 +169,8 @@ fileprivate func getIntString(data: Int?) -> String {
     return format.string(for: data)!
 }
 
-
-fileprivate let countryCodes = [ "usa", "kr", "singapore", "taiwan", "china", "brazil", "spain", "mx"]
+// these are iso2 country codes. https://www.nationsonline.org/oneworld/country_code_list.htm
+fileprivate let countryCodes = [ "us", "kr", "sg", "tw", "cn", "br", "in", "mx"]
 fileprivate let countryCodeList = countryCodes.joined(separator: ",")
 
 extension URL {
